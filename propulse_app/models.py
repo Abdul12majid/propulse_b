@@ -37,6 +37,7 @@ class Hostel(models.Model):
 		blank=True, 
 		null=True
 		)
+	available = models.BooleanField(default=True)
 
 	
 	def __str__(self):
