@@ -24,7 +24,7 @@ class Hostel(models.Model):
 	name = models.CharField(max_length=200)
 	property_size = models.CharField(max_length=200)
 	distance_to_junction = models.CharField(max_length=500)
-	utilities = models.ForeignKey('Utility', on_delete=models.CASCADE)
+	utilities = models.ManyToManyField('Utility', related_name='hostel_amenities')
 	picture1 = models.ImageField(blank=True, null=True, upload_to='hostel_pictures/')
 	picture2 = models.ImageField(blank=True, null=True, upload_to='hostel_pictures/')
 	picture3 = models.ImageField(blank=True, null=True, upload_to='hostel_pictures/')
