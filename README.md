@@ -1,7 +1,7 @@
 **Hostel Rental System with Django REST Framework**
 
 This project is a rental platform for student looking to get hostels and also hostel owners looking to put their hostels up for rent. This is built using _Django REST Framework_. 
-It allows users to create and search for hostels, and provides functionalities similar to the popular accommodation rental platform.
+It allows users to create and search for hostels, and provides functionalities similar to popular accommodation rental platforms.
 
 **Technologies Used**
 
