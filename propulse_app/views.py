@@ -14,6 +14,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 def root(request, format=None):
     return Response({
         'All Hostels': request.build_absolute_uri(reverse('all_hostels', args=[], kwargs={})),
+        'Available Hostels': request.build_absolute_uri(reverse('available_hostels', args=[], kwargs={})),
         'Create Hostel': request.build_absolute_uri(reverse('create_hostel', args=[], kwargs={})),
     })
 
@@ -26,8 +27,15 @@ def all_hostels(request):
 	return Response({'data': serializer.data})
 
 
+@api_view(['GET'])
+def available_hostels(request):
+	all_hostels = Hostel.objects.filter(available=True).all()
+	serializer = HostelSerializer(all_hostels, many=True)
+	return Response({'data': serializer.data})
+
+
 @api_view(['POST'])
-@parser_classes([MultiPartParser, FormParser])  # Enable file upload
+@parser_classes([MultiPartParser, FormParser])
 def create_hostel(request):
     serializer = HostelSerializer(data=request.data)
     if serializer.is_valid():
