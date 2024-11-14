@@ -21,6 +21,13 @@ class HostelMedia(models.Model):
 		return self.hostel.name + ' media.'
 
 
+class Address(models.Model):
+	name = models.CharField(max_length=500)
+
+	def __str__(self):
+		return self.name
+
+
 class Hostel(models.Model):
 	name = models.CharField(max_length=200)
 	property_size = models.CharField(max_length=200)
@@ -39,6 +46,7 @@ class Hostel(models.Model):
 		null=True
 		)
 	available = models.BooleanField(default=True)
+
 
 	
 	def __str__(self):
