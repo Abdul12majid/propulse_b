@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
-from .models import HostelMedia, Hostel
+from .models import HostelMedia, Hostel, Address
 from .serializers import HostelMediaSerializer, HostelSerializer, MessageSerializer
 from rest_framework.decorators import api_view, parser_classes, permission_classes
 from django.urls import reverse
@@ -22,6 +22,7 @@ def root(request, format=None):
         'Available Hostels': request.build_absolute_uri(reverse('available_hostels', args=[], kwargs={})),
         'Create Hostel': request.build_absolute_uri(reverse('create_hostel', args=[], kwargs={})),
         'Send message': request.build_absolute_uri(reverse('send_message', args=[], kwargs={})),
+        #'Search hostels': request.build_absolute_uri(reverse('search_hostels/<str:address>/', args=[], kwargs={})),
     })
 
 
@@ -58,6 +59,7 @@ def available_hostels(request):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 @parser_classes([MultiPartParser, FormParser])
 def create_hostel(request):
     serializer = HostelSerializer(data=request.data)
@@ -75,3 +77,16 @@ def send_message(request):
         serializer.save(sender=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def search_hostels(request, address):
+    matching_addresses = Address.objects.filter(name__icontains=address).all()
+    
+    if matching_addresses:
+    	hostels = Hostel.objects.filter(address__in=matching_addresses).all()
+    	serializer = HostelSerializer(hostels, many=True)
+    	return Response({'data': serializer.data})
+
+    else:
+	    return Response({'data': 'not found'})
