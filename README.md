@@ -33,15 +33,22 @@ It allows users to create and search for hostels, and provides functionalities s
 
 {
     "All Hostels": "http://localhost:8000/all_hostels/", - *List all hostels
+    
     "Available Hostels": "http://localhost:8000/available_hostels/", - *List available hostels
+    
     "Create Hostel": "http://localhost:8000/create_hostel/", - *Create hostel
+    
     "Send message": "http://localhost:8000/send_message/", - *Send message feature
+    
     "Login user": "http://localhost:8000/user/login", - *Login user
+    
     "Logout user": "http://localhost:8000/user/logout", - *Logout user
+    
     "Register user": "http://localhost:8000/user/register" - *Register user
 }
 
 **Contact Me**
+
 Reach out to me for the SECRET_KEY.
 For any questions or feedback, feel free to reach out to Majid at yisaabdulmajid@gmail.com or open an issue on the GitHub repository.
 
