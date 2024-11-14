@@ -24,6 +24,9 @@ class HostelMedia(models.Model):
 class Address(models.Model):
 	name = models.CharField(max_length=500)
 
+	class Meta:
+		verbose_name_plural = "Addresses"
+
 	def __str__(self):
 		return self.name
 
@@ -46,7 +49,7 @@ class Hostel(models.Model):
 		null=True
 		)
 	available = models.BooleanField(default=True)
-	address = models.ForeignKey('Address', on_delete=models.CASCADE, blank=True, null=True)
+	address = models.ForeignKey('Address', on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.name + ' hostel at ' + self.address.name 
