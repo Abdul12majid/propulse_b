@@ -28,8 +28,9 @@ It allows users to create and search for hostels, and provides functionalities s
 
 1. Start the development server: python manage.py runserver
 2. Access the API documentation at - http://127.0.0.1:8000/api/docs/ (not available yet)
+   
 
-**Features - ENDPOINTS ** 
+**Features - ENDPOINTS** 
 
 {
     "All Hostels": "http://localhost:8000/all_hostels/", - *List all hostels
@@ -50,6 +51,7 @@ It allows users to create and search for hostels, and provides functionalities s
 **Contact Me**
 
 Reach out to me for the SECRET_KEY.
+
 For any questions or feedback, feel free to reach out to Majid at yisaabdulmajid@gmail.com or open an issue on the GitHub repository.
 
    
