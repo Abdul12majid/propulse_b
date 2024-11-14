@@ -22,6 +22,7 @@ def root(request, format=None):
         'Available Hostels': request.build_absolute_uri(reverse('available_hostels', args=[], kwargs={})),
         'Create Hostel': request.build_absolute_uri(reverse('create_hostel', args=[], kwargs={})),
         'Send message': request.build_absolute_uri(reverse('send_message', args=[], kwargs={})),
+        'Login user': request.build_absolute_uri(reverse('login', args=[], kwargs={})),
         #'Search hostels': request.build_absolute_uri(reverse('search_hostels/<str:address>/', args=[], kwargs={})),
     })
 
