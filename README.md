@@ -33,6 +33,7 @@ It allows users to create and search for hostels, and provides functionalities s
 **Features - ENDPOINTS** 
 
 {
+    
     "All Hostels": "http://localhost:8000/all_hostels/", - *List all hostels
     
     "Available Hostels": "http://localhost:8000/available_hostels/", - *List available hostels
