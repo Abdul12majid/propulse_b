@@ -46,11 +46,10 @@ class Hostel(models.Model):
 		null=True
 		)
 	available = models.BooleanField(default=True)
+	address = models.ForeignKey('Address', on_delete=models.CASCADE, blank=True, null=True)
 
-
-	
 	def __str__(self):
-		return self.name + ' hostel'
+		return self.name + ' hostel at ' + self.address.name 
 
 
 class Message(models.Model):
