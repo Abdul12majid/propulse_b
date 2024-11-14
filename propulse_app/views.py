@@ -3,10 +3,11 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
 from .models import HostelMedia, Hostel
-from .serializers import HostelMediaSerializer, HostelSerializer
-from rest_framework.decorators import api_view, parser_classes
+from .serializers import HostelMediaSerializer, HostelSerializer, MessageSerializer
+from rest_framework.decorators import api_view, parser_classes, permission_classes
 from django.urls import reverse
 from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
@@ -16,6 +17,7 @@ def root(request, format=None):
         'All Hostels': request.build_absolute_uri(reverse('all_hostels', args=[], kwargs={})),
         'Available Hostels': request.build_absolute_uri(reverse('available_hostels', args=[], kwargs={})),
         'Create Hostel': request.build_absolute_uri(reverse('create_hostel', args=[], kwargs={})),
+        'Send message': request.build_absolute_uri(reverse('send_message', args=[], kwargs={})),
     })
 
 
@@ -40,5 +42,15 @@ def create_hostel(request):
     serializer = HostelSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def send_message(request):
+    serializer = MessageSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save(sender=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
