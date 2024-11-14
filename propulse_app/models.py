@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -42,3 +43,11 @@ class Hostel(models.Model):
 	
 	def __str__(self):
 		return self.name + ' hostel'
+
+
+class Message(models.Model):
+	sender = models.ForeignKey(User, on_delete=models.CASCADE)
+	message	= models.TextField()
+
+	def __str__(self):
+		return self.sender.username + ' message.'
