@@ -1,0 +1,1 @@
+web: gunicorn propulse.wsgi:application --log-file - --log-level debug
