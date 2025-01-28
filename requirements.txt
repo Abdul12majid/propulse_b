@@ -94,7 +94,6 @@ python-decouple==3.8
 python-Levenshtein==0.26.1
 python3-openid==3.2.0
 pytz==2023.3.post1
-pywin32==306
 qrcode==8.0
 RapidFuzz==3.11.0
 redbird==0.7.1
