@@ -100,7 +100,14 @@ REST_FRAMEWORK = {
 }
 
 
+# Allow all origins (for development only)
+CORS_ALLOW_ALL_ORIGINS = True
 
+# OR, allow specific origins (recommended for production)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Next.js app running locally
+    "https://your-nextjs-app.com",  # Production Next.js app
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
