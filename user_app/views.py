@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import LoginSerializer, SignUpSerializer
 from django.contrib.auth.models import User
+from propulse_app.serializers import HostelMediaSerializer, HostelSerializer
 
 # Create your views here.
 @api_view(['POST'])
@@ -42,7 +43,7 @@ def logout_user(request):
 	return Response({'Info': "You've been logged out"})
 
 
-@api_view(['POST', 'GET'])
+@api_view(['GET'])
 def bookmarked(request, username):
 	user = User.objects.get(username=username)
 	user_profile = user.profile
