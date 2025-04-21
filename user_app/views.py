@@ -40,3 +40,12 @@ def register(request):
 def logout_user(request):
 	logout(request)
 	return Response({'Info': "You've been logged out"})
+
+
+@api_view(['POST', 'GET'])
+def bookmarked(request, username):
+	user = User.objects.get(username=username)
+	user_profile = user.profile
+	hostels = user_profile.bookmarked.all()
+	serializer = HostelSerializer(hostels, many=True)
+	return Response({'Your Bookmarks': serializer.data})

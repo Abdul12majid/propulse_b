@@ -8,5 +8,6 @@ urlpatterns = [
     path('create_hostel/', views.create_hostel, name='create_hostel'),
     path('send_message/', views.send_message, name='send_message'),
     path('search_hostels/<str:address>/', views.search_hostels, name='search_hostels'),
+    path('bookmark/<int:pk>/', views.bookmark_hostel, name='bookmark'),
     
 ]

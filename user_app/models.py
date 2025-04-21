@@ -10,7 +10,7 @@ class Profile(models.Model):
     contact = models.CharField(max_length=255)
     profile_image = models.ImageField(upload_to='profile_images', null=True, blank=True)
     profile_bio=models.TextField(null=True, blank=True, max_length=500)
-    bookmarked = models.ManyToManyField(Hostel, related_name='saved_blog', symmetrical=False, blank=True)
+    bookmarked = models.ManyToManyField(Hostel, related_name='saved_hostels', symmetrical=False, blank=True)
 
     def __str__(self):
         return self.user.username

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
@@ -94,3 +94,20 @@ def search_hostels(request, address):
 
     else:
 	    return Response({'data': 'not found'})
+
+
+@api_view(['POST', 'GET'])
+def bookmark_hostel(request, pk):
+    hostel = get_object_or_404(Hostel, id=pk)
+    user_profile = request.user.profile
+
+    if hostel in user_profile.bookmarked.all():
+        user_profile.bookmarked.remove(hostel)
+        user_profile.save()
+        print("removed", flush=True)
+        return Response({'data': "removed"}, status=status.HTTP_200_OK)
+    else:
+        user_profile.bookmarked.add(hostel)
+        user_profile.save()
+        print("added", flush=True)
+        return Response({'data': "added"}, status=status.HTTP_200_OK)
